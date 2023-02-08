@@ -1,0 +1,68 @@
+<h3>SuprNation Challenge</h3>
+
+<p-message *ngIf="msgAlert" severity="error" text="Expression require a result to be submitted! (Example: 3 + 2 = 5)"></p-message>
+
+<div class="main-content">
+
+  <div class="left-panel">
+    <h3>Type your expression here:</h3>
+    <div class="input-group">
+      <input class="input-exp" type="text" pInputText [(ngModel)]="expression" (ngModelChange)="validateExpression($event)"> 
+      <p-button label="Submit" [disabled]="!isValid" (click)="submitExpression()"></p-button>
+    </div>
+    <p-message *ngIf="isValid" severity="success" text="Expression is valid"></p-message>
+    <p-message *ngIf="!isValid && expression !== ''" severity="error" text="Expression is not valid"></p-message>
+
+    <p-panel header="Calculator">
+      <div class="panel-content">
+        <button pButton pRipple type="button" label="7" class="p-button-secondary" (click)="addString('7')"></button>
+        <button pButton pRipple type="button" label="8" class="p-button-secondary" (click)="addString('8')"></button>
+        <button pButton pRipple type="button" label="9" class="p-button-secondary" (click)="addString('9')"></button>
+        <button pButton pRipple type="button" label="/" class="p-button-warning" (click)="addString('/')"></button>
+        <button pButton pRipple type="button" label="sin" class="p-button-warning" (click)="addString('sin')"></button>
+    
+        <button pButton pRipple type="button" label="4" class="p-button-secondary" (click)="addString('4')"></button>
+        <button pButton pRipple type="button" label="5" class="p-button-secondary" (click)="addString('5')"></button>
+        <button pButton pRipple type="button" label="6" class="p-button-secondary" (click)="addString('6')"></button>
+        <button pButton pRipple type="button" label="*" class="p-button-warning" (click)="addString('*')"></button>
+        <button pButton pRipple type="button" label="cos" class="p-button-warning" (click)="addString('cos')"></button>
+
+        <button pButton pRipple type="button" label="1" class="p-button-secondary" (click)="addString('1')"></button>
+        <button pButton pRipple type="button" label="2" class="p-button-secondary" (click)="addString('2')"></button>
+        <button pButton pRipple type="button" label="3" class="p-button-secondary" (click)="addString('3')"></button>
+        <button pButton pRipple type="button" label="-" class="p-button-warning" (click)="addString('-')"></button>
+        <button pButton pRipple type="button" label="(" class="p-button-warning" (click)="addString('(')"></button>
+
+        <button pButton pRipple type="button" label="0" class="p-button-secondary" (click)="addString('0')"></button>
+        <button pButton pRipple type="button" label="." class="p-button-secondary" (click)="addString('.')"></button>
+        <button pButton pRipple type="button" label="=" class="p-button-success" (click)="addString('=')"></button>
+        <button pButton pRipple type="button" label="+" class="p-button-warning" (click)="addString('+')"></button>
+        <button pButton pRipple type="button" label=")" class="p-button-warning" (click)="addString(')')"></button>
+
+        <button pButton pRipple type="button" label="C" class="p-button-danger" (click)="clearString()"></button>
+      </div>
+    </p-panel>
+    
+
+    <p-button class="random-button" label="Generate a random number" (click)="generateRandomNumber()"></p-button>
+    <h4>Random Number from API: {{randomNumber}}</h4>
+    
+    
+  </div>
+
+  <div class="right-panel">
+    <h3>Last 5 results</h3>
+    <table id="tabledata">
+      <thead>
+          <th>Expression</th>
+          <th>Result</th>
+          <th>Answer</th>
+      </thead>
+      <tbody *ngFor="let data of tableData">
+          <td>{{data.expression}}</td>
+          <td>{{data.result}}</td>
+          <td>{{data.answer}}</td>
+      </tbody>
+  </table>
+</div>
+

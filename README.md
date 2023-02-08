@@ -15,3 +15,9 @@
 - Execute node taskb.js 'Expression'. 
 - Example1: `node taskb.js '3 + 2 + 4 = 9'`
 - Example2: `node taskb.js 'sin(30) + cos(20) = -0.5799495623'`
+
+### TaskC and TaskD
+- Go to folder angtest
+- Run: `npm install`
+- Run: `npm start`
+- In the browser type: `http://localhost:4200/`
